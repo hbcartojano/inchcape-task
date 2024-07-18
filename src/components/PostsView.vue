@@ -16,7 +16,8 @@
         <span>Page {{ currentPage }}</span>
         <button
           @click="changePage(1)"
-          class="bg-slate-500 text-white py-2 px-4 rounded hover:bg-slate-700 ml-2"
+          :disabled="!morePostsAvailable"
+          class="bg-slate-500 text-white py-2 px-4 rounded hover:bg-slate-700 ml-2 disabled:opacity-50 mr-2"
         >
           Next
         </button>
@@ -31,7 +32,8 @@
       return {
         posts: [],
         currentPage: 1,
-        limit: 10
+        limit: 10,
+        morePostsAvailable: true
       };
     },
     methods: {
@@ -41,12 +43,14 @@
           .then(response => response.json())
           .then(data => {
             this.posts = data;
+            this.morePostsAvailable = data.length === this.limit;
           })
           .catch(error => console.error('Error:', error));
       },
       changePage(change) {
-        this.currentPage += change;
-        this.fetchPosts();
+        if (change === 1 && !this.morePostsAvailable) return;
+            this.currentPage += change;
+            this.fetchPosts();
       }
     },
     mounted() {
