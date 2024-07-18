@@ -9,14 +9,14 @@
         <button
           @click="changePage(-1)"
           :disabled="currentPage <= 1"
-          class="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-700 disabled:opacity-50 mr-2"
+          class="bg-slate-500 text-white py-2 px-4 rounded hover:bg-slate-700 disabled:opacity-50 mr-2"
         >
           Previous
         </button>
         <span>Page {{ currentPage }}</span>
         <button
           @click="changePage(1)"
-          class="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-700 ml-2"
+          class="bg-slate-500 text-white py-2 px-4 rounded hover:bg-slate-700 ml-2"
         >
           Next
         </button>
